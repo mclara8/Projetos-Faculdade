@@ -17,34 +17,30 @@ int main(){
     // Alocar memória para o primeiro nó (cabeça)
     myList.head = malloc(sizeof(struct Node));
     if (myList.head = NULL) {
-        // Verificação de erro na alocação
         printf("Erro na alocação de memória para o nó cabeça. \n");
         return 1; 
     }
 
-    // Inicializar o campo next como NULL
     myList.head -> next = NULL; 
 
     // Criar um novo nó e adicioná-lo à lista
     struct Node* newNode = malloc(sizeof(struct Node));
     if (newNode == NULL) {
         printf("Erro na alocação de memória para o nó cabeça. \n");
-        free(myList.head); // Liberar memória alocada para a cabeça
+        free(myList.head); 
         return 1;
     }
 
-    newNode -> data = 22; // Atribuir valor ao campo data do novo nó
-    newNode -> next = myList.head -> next; // O next do novo nó aponta para NULL
-    myList.head -> next = newNode; // O next da cabeça agora aponta para o novo nó
+    newNode -> data = 22; 
+    newNode -> next = myList.head -> next; 
+    myList.head -> next = newNode;
 
     // Remover o nó recém-adicionado
-    struct Node* temp = myList.head -> next; // Apontar para o nó a ser removido
-    myList.head -> next = temp -> next; // Atualizar o ponteiro next da cabeça
+    struct Node* temp = myList.head -> next; 
+    myList.head -> next = temp -> next; 
 
-    // Liberar a memória do nó removido
     free(temp);
 
-    // Libera a memória alocada para o nó cabeça
     free(myList.head);
 
     return 0; 
